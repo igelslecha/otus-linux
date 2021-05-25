@@ -77,14 +77,15 @@ Vagrant.configure("2") do |config|
                      end
                   end
           end
- 	  box.vm.provision "shell", inline: <<-SHELL
+ 	
+      end
+  config.vm.provision "shell" do |s|
+	s. inline="
 	      mkdir -p ~root/.ssh
               cp ~vagrant/.ssh/auth* ~root/.ssh
-	      yum install -y mdadm smartmontools hdparm gdisk
-	 box.vm.provision :shell, path: "script.sh"
-
-  SHELL
-      end
+	      yum install -y mdadm smartmontools hdparm gdisk"
+	end
+  config.vm.provision "shell", path: "script.sh" 
   end
 end
 
